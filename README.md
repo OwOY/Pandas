@@ -23,8 +23,8 @@ pd.read_Excel(..., engine='openpyxl')
 ```
 filepath = csv_name,
 sheet_name = sheet_name,
-usecols = ['col1', 'col2'],
-header = None,     #設置沒有index
+usecols = ['col1', 'col2'],  # If 
+header = None,     # 設置沒有index
 ```
 ## Use Data
 ### DataFrame
@@ -37,3 +37,10 @@ pd.DataFrame(test)
 |--|--|  
 |3 | 5|  
 |7 | 8|  
+
+### Turn data to list dict
+```
+data = pd.DataFrame(test, columns=['p1','p2'])
+output = data.iloc('records')
+```
+>> output = [{'p1':3, 'p2':5}, {'p1':7, 'p2':8}]
