@@ -44,3 +44,9 @@ data = pd.DataFrame(test, columns=['p1','p2'])
 output = data.iloc('records')
 ```
 >> output = [{'p1':3, 'p2':5}, {'p1':7, 'p2':8}]
+
+### trans Data NaN > None  
+```
+df = pd.read_csv('test.csv')
+df = df.where(df.notnull(), None)
+```
