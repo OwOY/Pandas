@@ -46,7 +46,11 @@ output = data.iloc('records')
 >> output = [{'p1':3, 'p2':5}, {'p1':7, 'p2':8}]
 
 ### trans Data NaN > None  
+df = pd.read_csv('test.csv')  
 ```
-df = pd.read_csv('test.csv')
+method1
 df = df.where(df.notnull(), None)
+method2
+import numpy as np
+df = df.replace({np.nan: None})
 ```
