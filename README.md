@@ -54,3 +54,30 @@ method2
 import numpy as np
 df = df.replace({np.nan: None})
 ```
+
+## Download
+- excel
+```
+df.to_excel(f'{path_name}', sheet_name=f'{sheet_name}')
+```
+- csv
+```
+df.to_csv(f'{path_name}', sheet_name=f'{sheet_name}')
+```
+- multisheet
+```
+writer = pd.ExcelWriter(f'{excel_name}', engine='xlsxwriter')
+df1.to_excel(writer, sheet_name='sheet_name1')
+df2.to_excel(writer, sheet_name='sheet_name2')
+writer.save()
+```
+- memory
+```
+from io import BytesIO
+output = BytesIO()
+writer = pd.ExcelWriter(output, engine='xlsxwriter')
+df_MLB.to_excel(writer, sheet_name='MLB Build Plan')
+df_PAD.to_excel(writer, sheet_name='IPAD Build Plan')
+writer.save()
+output.seek(0)
+```
