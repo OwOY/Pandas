@@ -54,7 +54,19 @@ method2
 import numpy as np
 df = df.replace({np.nan: None})
 ```
-
+### sorted by values
+```
+df.sort_values(by=col, inplace=True)    #inplace 若True 可迭代
+```
+### concat column values to list
+```
+df['test'] = list(zip(df[col1], df[col2]))
+```
+### group_by and concat another column
+```
+df = df.groupby([col1, col2, col3])['test'].apply(list)
+```
+>> [(a,b,c):['1','2','3']]  
 ## Download
 - excel
 ```
