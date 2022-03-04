@@ -80,6 +80,10 @@ df = df.groupby([col1, col2, col3])['test'].apply(list)
 df = df.groupby('model', as_index=False) # 可保留 group 之 Column
 ```
 >> [(a,b,c):['1','2','3']]  
+### group sort
+```
+df = df.sort_values(['a', 'b'], ascending=True) # 升冪
+```
 ## Download
 - excel
 ```
