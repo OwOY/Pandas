@@ -84,6 +84,11 @@ df = df.groupby('model', as_index=False) # 可保留 group 之 Column
 ```
 df = df.sort_values(['a', 'b'], ascending=True) # 升冪
 ```
+### pivot重作DataFrame(groupby後)  
+```
+exist_df = df[df['MTNO'] != '無匹配資料']
+output_df = exist_df_group.pivot('MTNO', 'date').fillna(0)
+```
 ## Download
 - excel
 ```
