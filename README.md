@@ -10,6 +10,13 @@ python -m pip install pandas
 import pandas as pd
 ```
 ### Open Excel
+----
+#### if data > 15MB
+- use hdf (more faster)
+#### if data < 15MB
+- use csv
+----
+
 - CSV
 ```
 pd.read_csv(...)
@@ -18,6 +25,11 @@ pd.read_csv(...)
 ```
 # python -m pip install openpyxl
 pd.read_Excel(..., engine='openpyxl')
+```
+- HDF
+```
+# python -m pip install tables
+pd.read_hdf('test.h5', key='asd') # key can be anything
 ```
 ### Useful params
 ```
