@@ -61,7 +61,9 @@ df = df[
 - fuzzy search
 ```
 df = df[
-        df[column].str.startwith('te'),
+        df[column].str.startwith('te'), # startwith 'te'
+        df[column].str.endwith('st'), # endwith 'st'
+        df[column].str.contains('es'), # string contains es 
         ]
 ```
 
