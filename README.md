@@ -54,16 +54,16 @@ pd.DataFrame(test)
 - normal
 ```
 df = df[
-        df[column] == 'test',
-        df[column2] == 'test1,
+        df[column] == 'test' &
+        df[column2] == 'test1
         ]
 ```
 - fuzzy search
 ```
 df = df[
-        df[column].str.startwith('te'), # startwith 'te'
-        df[column].str.endwith('st'), # endwith 'st'
-        df[column].str.contains('es'), # string contains es 
+        df[column].str.startwith('te') &   # startwith 'te'
+        df[column].str.endwith('st') &   # endwith 'st'
+        df[column].str.contains('es') &   # string contains es 
         ]
 ```
 
