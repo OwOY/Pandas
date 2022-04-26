@@ -50,6 +50,21 @@ pd.DataFrame(test)
 |3 | 5|  
 |7 | 8|  
 
+### filter
+- normal
+```
+df = df[
+        df[column] == 'test',
+        df[column2] == 'test1,
+        ]
+```
+- fuzzy search
+```
+df = df[
+        df[column].str.startwith('te'),
+        ]
+```
+
 ### Turn data to list dict
 ```
 data = pd.DataFrame(test, columns=['p1','p2'])
@@ -66,14 +81,17 @@ method2
 import numpy as np
 df = df.replace({np.nan: None})
 ```
+
 ### sorted by values
 ```
 df.sort_values(by=col, inplace=True)    #inplace 若True 可迭代
 ```
+
 ### concat column values to list
 ```
 df['test'] = list(zip(df[col1], df[col2]))
 ```
+
 ### group_by get_group
 |p1|p2|  
 |--|--|  
@@ -83,24 +101,29 @@ df['test'] = list(zip(df[col1], df[col2]))
 df = df.groupby([p1, p2])
 df.get_group((3, 5))
 ```
+
 ### group_by and concat another column
 ```
 df = df.groupby([col1, col2, col3])['test'].apply(list)
 ```
+
 ### group_by keep column
 ```
 df = df.groupby('model', as_index=False) # 可保留 group 之 Column
 ```
 >> [(a,b,c):['1','2','3']]  
+
 ### group sort
 ```
 df = df.sort_values(['a', 'b'], ascending=True) # 升冪
 ```
+
 ### pivot重作DataFrame(groupby後)  
 ```
 exist_df = df[df['MTNO'] != '無匹配資料']
 output_df = exist_df_group.pivot('MTNO', 'date').fillna(0)
 ```
+
 ## Download
 - excel
 ```
@@ -109,6 +132,10 @@ df.to_excel(f'{path_name}', sheet_name=f'{sheet_name}')
 - csv
 ```
 df.to_csv(f'{path_name}', sheet_name=f'{sheet_name}')
+```
+- hdf
+```
+df.to_hdf(f'{path_name}', key='abc')
 ```
 - multisheet
 ```
