@@ -31,12 +31,14 @@ pd.read_Excel(..., engine='openpyxl')
 # python -m pip install tables
 pd.read_hdf('test.h5', key='asd') # key can be anything
 ```
-### Useful params
+### Read Useful params
 ```
 filepath = csv_name,
 sheet_name = sheet_name,
-usecols = ['col1', 'col2'],  # If 
+usecols = ['col1', 'col2'],
 header = None,     # 設置沒有index
+keep_default_na=False # replace nan > ''
+dtype = {'column':str, 'column2':int} # set output format
 ```
 ## Use Data
 ### DataFrame
