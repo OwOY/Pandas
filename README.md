@@ -1,4 +1,6 @@
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/1200px-Pandas_logo.svg.png">  
+<div align='center'>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/1200px-Pandas_logo.svg.png" width=85% height=75%>  
+</div>
 
 ## Install
 ```
@@ -9,13 +11,20 @@ python -m pip install pandas
 ```
 import pandas as pd
 ```
-### Open Excel
-----
+## Open Excel  
+- Useful params
+```
+filepath = csv_name,  
+sheet_name = sheet_name,  
+usecols = ['col1', 'col2'],  
+header = None,     # 設置沒有index  
+keep_default_na=False # replace nan > ''  
+dtype = {'column':str, 'column2':int} # set output format
+```
 #### if data > 15MB
 - use hdf (more faster)
 #### if data < 15MB
 - use csv
-----
 
 - CSV
 ```
@@ -31,17 +40,8 @@ pd.read_Excel(..., engine='openpyxl')
 # python -m pip install tables
 pd.read_hdf('test.h5', key='asd') # key can be anything
 ```
-### Read Useful params
-```
-filepath = csv_name,
-sheet_name = sheet_name,
-usecols = ['col1', 'col2'],
-header = None,     # 設置沒有index
-keep_default_na=False # replace nan > ''
-dtype = {'column':str, 'column2':int} # set output format
-```
-## Use Data
-### DataFrame
+
+## DataFrame
 ```
 import pandas as pd
 test = [{'p1':3, 'p2':5}, {'p1':7, 'p2':8}]
@@ -69,6 +69,31 @@ df = df[
         ]
 ```
 
+### add Data
+```
+data = [{'test1':1, 'test2':2}, {'test1':1, 'test2':2}]
+df = pd.DataFrame(data)
+new_data = [{'test1':2, 'test2':3}, {'test1':2, 'test2':3}]
+new_df = pd.DataFrame(new_data)
+df.append(new_df, inplace=True) # inplace 可直接迭代
+```
+
+### edit Data
+1. 先篩選出要修改的欄位
+2. 根據篩選出的index替換column資料
+```
+match_df = df[df[column] == 'test]
+df.loc[match_df.index, column] = 'test1'
+```
+
+### drop Data
+1. 先篩選出要刪除的欄位
+2. 根據篩選出的index刪除
+```
+match_df = df[df[column] == 'test]
+df.drop(match_df.index, inplace = True) # inplace 可直接迭代
+```
+
 ### Turn data to list dict
 ```
 data = pd.DataFrame(test, columns=['p1','p2'])
@@ -77,7 +102,6 @@ output = data.iloc('records')
 >> output = [{'p1':3, 'p2':5}, {'p1':7, 'p2':8}]
 
 ### trans Data NaN > None  
-df = pd.read_csv('test.csv')  
 ```
 method1
 df = df.where(df.notnull(), None)
@@ -88,7 +112,10 @@ df = df.replace({np.nan: None})
 
 ### sorted by values
 ```
-df.sort_values(by=col, inplace=True)    #inplace 若True 可迭代
+# method1
+df.sort_values(by=col, inplace=True) #inplace 若True 可迭代
+# method2
+df.sort_values([col1, col2], ascending=[True, False])
 ```
 
 ### concat column values to list
@@ -96,13 +123,14 @@ df.sort_values(by=col, inplace=True)    #inplace 若True 可迭代
 df['test'] = list(zip(df[col1], df[col2]))
 ```
 
-### group_by get_group
+### group_by
 |p1|p2|  
 |--|--|  
 |3 | 5|  
 |7 | 8|  
 ```
 df = df.groupby([p1, p2])
+df.groups # group = value
 df.get_group((3, 5))
 ```
 
