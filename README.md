@@ -56,9 +56,10 @@ pd.DataFrame(test)
 - normal
 ```
 df = df[
-        df[column] == 'test' &
-        df[column2] == 'test1
+        (df[column] == 'test') &
+        (df[column2] == 'test1)
         ]
+# 小括弧必加！！
 ```
 - fuzzy search
 ```
