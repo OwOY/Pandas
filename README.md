@@ -157,6 +157,21 @@ exist_df = df[df['MTNO'] != '無匹配資料']
 output_df = exist_df_group.pivot('MTNO', 'date').fillna(0)
 ```
 
+### 輸出合併儲存格
+example:  
+```
+writer = pd.ExcelWriter('foo.xlsx')
+workbook = writer.book
+workbook_format = workbook.add_format({'align':'center', 'border':True}) # 改變儲存格格式
+df = pd.DataFrame(new_data)
+df.to_excel(writer, sheet_name='Sheet1', index=False)
+write_sheet = writer.sheets['Sheet1']
+write_sheet.merge_range('B1:C1', '材料編號', workbook_format) # 合併
+write_sheet.merge_range('D1:G1', '規格', workbook_format)
+writer.save()
+```
+
+
 ## Download
 - excel
 ```
